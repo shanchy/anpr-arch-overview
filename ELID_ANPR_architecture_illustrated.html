@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{margin:0;padding:12px;background:transparent;font-family:sans-serif}
+.wrap{overflow-x:auto;overflow-y:auto}
+.diag-title{font-size:14px;font-weight:500;color:var(--text-primary,#222);text-align:center;margin-bottom:10px}
+svg text{font-family:sans-serif}
+</style>
+</head>
+<body>
+<div class="diag-title">ELID-ANPR — System Architecture</div>
+<div class="wrap">
+<svg width="1400" viewBox="0 0 1400 1050" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arr-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#A32D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- ── BACKGROUND ── -->
+<rect width="1400" height="1050" fill="#F8F7F3" rx="12"/>
+
+<!-- ═══════════════════════════════════════════
+     MANAGEMENT SYSTEMS ROW (top)
+═══════════════════════════════════════════ -->
+
+<!-- CloVis cloud -->
+<rect x="30" y="18" width="240" height="110" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="150" y="36" text-anchor="middle" font-size="10" font-weight="500" fill="#085041">☁ CloVis — Visitor cloud</text>
+<!-- server icon -->
+<rect x="60" y="44" width="36" height="24" rx="3" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.7"/>
+<rect x="63" y="47" width="6" height="3" rx="1" fill="#085041"/>
+<rect x="63" y="52" width="6" height="3" rx="1" fill="#085041"/>
+<rect x="63" y="57" width="6" height="3" rx="1" fill="#085041"/>
+<rect x="74" y="47" width="16" height="4" rx="1" fill="#1D9E75" opacity=".5"/>
+<rect x="74" y="53" width="12" height="4" rx="1" fill="#1D9E75" opacity=".5"/>
+<text x="108" y="54" font-size="9.5" fill="#085041">Visitor pre-registration</text>
+<text x="108" y="66" font-size="9.5" fill="#085041">Visitor database</text>
+<rect x="45" y="78" width="180" height="18" rx="4" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="135" y="91" text-anchor="middle" font-size="9" fill="#085041" font-weight="500">Employee invites visitor via CloVis</text>
+<text x="150" y="118" text-anchor="middle" font-size="9" fill="#0F6E56" font-style="italic">Cloud-based · own DB</text>
+
+<!-- DMS on-premise -->
+<rect x="520" y="18" width="360" height="110" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="700" y="36" text-anchor="middle" font-size="10" font-weight="500" fill="#27500A">🖥 DMS — Device management software (on-premise)</text>
+<!-- desktop computer icon -->
+<rect x="540" y="44" width="44" height="30" rx="3" fill="#C0DD97" stroke="#639922" stroke-width="0.7"/>
+<rect x="542" y="46" width="40" height="24" rx="2" fill="#173404" opacity=".8"/>
+<rect x="542" y="46" width="40" height="24" rx="2" fill="none" stroke="#639922" stroke-width="0.5"/>
+<text x="562" y="62" text-anchor="middle" font-size="7" fill="#2ecc71">DMS</text>
+<rect x="558" y="75" width="8" height="4" rx="1" fill="#639922"/>
+<rect x="540" y="78" width="44" height="4" rx="1" fill="#639922" opacity=".5"/>
+<text x="620" y="55" font-size="9.5" fill="#27500A">Manages AP1 + AP2 devices</text>
+<rect x="620" y="62" width="140" height="16" rx="3" fill="#C0DD97" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="690" y="73" text-anchor="middle" font-size="9" fill="#173404" font-weight="500">Parking payment module</text>
+<text x="620" y="92" font-size="9.5" fill="#27500A">Local database</text>
+<text x="700" y="118" text-anchor="middle" font-size="9" fill="#3B6D11" font-style="italic">On-premise · own DB</text>
+
+<!-- Clover cloud -->
+<rect x="1130" y="18" width="240" height="110" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="1250" y="36" text-anchor="middle" font-size="10" font-weight="500" fill="#412402">☁ Clover — Cloud DMS</text>
+<!-- server icon -->
+<rect x="1150" y="44" width="36" height="24" rx="3" fill="#FAC775" stroke="#BA7517" stroke-width="0.7"/>
+<rect x="1153" y="47" width="6" height="3" rx="1" fill="#412402"/>
+<rect x="1153" y="52" width="6" height="3" rx="1" fill="#412402"/>
+<rect x="1153" y="57" width="6" height="3" rx="1" fill="#412402"/>
+<rect x="1164" y="47" width="16" height="4" rx="1" fill="#BA7517" opacity=".5"/>
+<rect x="1164" y="53" width="12" height="4" rx="1" fill="#BA7517" opacity=".5"/>
+<text x="1198" y="54" font-size="9.5" fill="#412402">Manages ANPRs + controllers</text>
+<text x="1198" y="66" font-size="9.5" fill="#412402">Device + controller DB</text>
+<rect x="1140" y="78" width="180" height="18" rx="4" fill="#FAC775" stroke="#854F0B" stroke-width="0.5"/>
+<text x="1230" y="91" text-anchor="middle" font-size="9" fill="#412402" font-weight="500">Cloud variant of DMS</text>
+<text x="1250" y="118" text-anchor="middle" font-size="9" fill="#854F0B" font-style="italic">Cloud-based · own DB</text>
+
+<!-- ═══════════════════════════════════════════
+     ROUTERS ROW
+═══════════════════════════════════════════ -->
+<!-- Router A -->
+<rect x="410" y="148" width="140" height="46" rx="8" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.7"/>
+<text x="480" y="163" text-anchor="middle" font-size="10" font-weight="500" fill="#2C2C2A">Router A — LAN</text>
+<!-- router icon -->
+<rect x="422" y="168" width="30" height="8" rx="2" fill="#888780"/>
+<rect x="425" y="162" width="3" height="7" rx="1" fill="#5F5E5A"/>
+<rect x="431" y="160" width="3" height="9" rx="1" fill="#5F5E5A"/>
+<rect x="437" y="158" width="3" height="11" rx="1" fill="#5F5E5A"/>
+<text x="465" y="177" font-size="9" fill="#444441">AP1 + AP2</text>
+
+<!-- Router B -->
+<rect x="625" y="148" width="150" height="46" rx="8" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.7"/>
+<text x="700" y="163" text-anchor="middle" font-size="10" font-weight="500" fill="#2C2C2A">Router B — LAN</text>
+<rect x="635" y="168" width="30" height="8" rx="2" fill="#888780"/>
+<rect x="638" y="162" width="3" height="7" rx="1" fill="#5F5E5A"/>
+<rect x="644" y="160" width="3" height="9" rx="1" fill="#5F5E5A"/>
+<rect x="650" y="158" width="3" height="11" rx="1" fill="#5F5E5A"/>
+<text x="675" y="177" font-size="9" fill="#444441">AP3 + Guard WS</text>
+
+<!-- WiFi Router -->
+<rect x="840" y="148" width="150" height="46" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.7"/>
+<text x="915" y="163" text-anchor="middle" font-size="10" font-weight="500" fill="#412402">WiFi router</text>
+<!-- wifi arcs -->
+<text x="852" y="182" font-size="18" fill="#EF9F27" opacity=".8">📶</text>
+<text x="875" y="177" font-size="9" fill="#633806">AP4 only · no LAN</text>
+
+<!-- ═══════════════════════════════════════════
+     SITE BOUNDARY
+═══════════════════════════════════════════ -->
+<rect x="30" y="210" width="1340" height="820" rx="16" fill="none" stroke="#888780" stroke-width="2" stroke-dasharray="8 4"/>
+<text x="700" y="228" text-anchor="middle" font-size="11" font-weight="500" fill="#5F5E5A">Mixed development site — offices · shops · parking</text>
+
+<!-- ── CENTRAL BUILDING COMPLEX (top-down) ── -->
+<!-- Main building footprint -->
+<rect x="430" y="310" width="540" height="380" rx="10" fill="#E8E6E0" stroke="#888780" stroke-width="1.5"/>
+<!-- Office block -->
+<rect x="445" y="325" width="220" height="160" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.7"/>
+<text x="555" y="348" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A">Office block</text>
+<!-- office windows grid -->
+<rect x="455" y="358" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="479" y="358" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="503" y="358" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="527" y="358" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="551" y="358" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="575" y="358" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="599" y="358" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="623" y="358" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="455" y="378" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="479" y="378" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="503" y="378" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="527" y="378" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="551" y="378" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="575" y="378" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="599" y="378" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="623" y="378" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="455" y="398" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="479" y="398" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="503" y="398" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="527" y="398" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="551" y="398" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="575" y="398" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="599" y="398" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="623" y="398" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="455" y="418" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5" opacity=".6"/>
+<rect x="479" y="418" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5" opacity=".6"/>
+<rect x="503" y="418" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5" opacity=".6"/>
+<rect x="527" y="418" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5" opacity=".6"/>
+<rect x="551" y="418" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5" opacity=".6"/>
+<rect x="575" y="418" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5" opacity=".6"/>
+<rect x="599" y="418" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5" opacity=".6"/>
+<rect x="623" y="418" width="18" height="14" rx="1" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5" opacity=".6"/>
+
+<!-- Shopping mall -->
+<rect x="685" y="325" width="265" height="160" rx="6" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.7"/>
+<text x="817" y="348" text-anchor="middle" font-size="11" font-weight="500" fill="#412402">Shopping mall</text>
+<!-- shop fronts top-down -->
+<rect x="696" y="358" width="55" height="50" rx="3" fill="#FAC775" stroke="#BA7517" stroke-width="0.5"/>
+<text x="723" y="387" text-anchor="middle" font-size="8" fill="#412402">Shop A</text>
+<rect x="758" y="358" width="55" height="50" rx="3" fill="#FAC775" stroke="#BA7517" stroke-width="0.5"/>
+<text x="785" y="387" text-anchor="middle" font-size="8" fill="#412402">Shop B</text>
+<rect x="820" y="358" width="55" height="50" rx="3" fill="#FAC775" stroke="#BA7517" stroke-width="0.5"/>
+<text x="847" y="387" text-anchor="middle" font-size="8" fill="#412402">Shop C</text>
+<rect x="882" y="358" width="55" height="50" rx="3" fill="#FAC775" stroke="#BA7517" stroke-width="0.5"/>
+<text x="909" y="387" text-anchor="middle" font-size="8" fill="#412402">Shop D</text>
+<rect x="696" y="414" width="116" height="40" rx="3" fill="#EF9F27" opacity=".3" stroke="#BA7517" stroke-width="0.5"/>
+<text x="754" y="438" text-anchor="middle" font-size="8" fill="#412402">Food court</text>
+<rect x="820" y="414" width="117" height="40" rx="3" fill="#EF9F27" opacity=".3" stroke="#BA7517" stroke-width="0.5"/>
+<text x="878" y="438" text-anchor="middle" font-size="8" fill="#412402">Atrium</text>
+
+<!-- Parking area (centre bottom of building) -->
+<rect x="445" y="498" width="510" height="178" rx="6" fill="#E8E6E0" stroke="#888780" stroke-width="0.7"/>
+<text x="700" y="518" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Parking area</text>
+<!-- parking bays top-down -->
+<rect x="455" y="526" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="495" y="526" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="535" y="526" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="575" y="526" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="615" y="526" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="655" y="526" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="695" y="526" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="735" y="526" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="775" y="526" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="815" y="526" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="855" y="526" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="895" y="526" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<!-- parked cars top-down (blue = car in bay) -->
+<rect x="539" y="528" width="26" height="14" rx="3" fill="#3498db" opacity=".8"/>
+<rect x="579" y="528" width="26" height="14" rx="3" fill="#3498db" opacity=".8"/>
+<rect x="739" y="528" width="26" height="14" rx="3" fill="#3498db" opacity=".8"/>
+<rect x="899" y="528" width="26" height="14" rx="3" fill="#3498db" opacity=".8"/>
+<!-- driving lane -->
+<line x1="455" y1="555" x2="939" y2="555" stroke="#fff" stroke-width="1" stroke-dasharray="12 8" opacity=".7"/>
+<!-- row 2 bays -->
+<rect x="455" y="565" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="495" y="565" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="535" y="565" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="575" y="565" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="615" y="565" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="655" y="565" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="695" y="565" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="735" y="565" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="775" y="565" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="815" y="565" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="855" y="565" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="895" y="565" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="499" y="567" width="26" height="14" rx="3" fill="#3498db" opacity=".8"/>
+<rect x="619" y="567" width="26" height="14" rx="3" fill="#e74c3c" opacity=".8"/>
+<rect x="779" y="567" width="26" height="14" rx="3" fill="#3498db" opacity=".8"/>
+<line x1="455" y1="594" x2="939" y2="594" stroke="#fff" stroke-width="1" stroke-dasharray="12 8" opacity=".7"/>
+<!-- row 3 -->
+<rect x="455" y="604" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="495" y="604" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="535" y="604" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="575" y="604" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="615" y="604" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="655" y="604" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="695" y="604" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="735" y="604" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="775" y="604" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="815" y="604" width="34" height="18" rx="2" fill="#85B7EB" stroke="#378ADD" stroke-width="0.5"/>
+<rect x="855" y="604" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="895" y="604" width="34" height="18" rx="2" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+<rect x="539" y="606" width="26" height="14" rx="3" fill="#3498db" opacity=".8"/>
+<rect x="659" y="606" width="26" height="14" rx="3" fill="#3498db" opacity=".8"/>
+<rect x="819" y="606" width="26" height="14" rx="3" fill="#e74c3c" opacity=".8"/>
+<!-- motorbike symbol in a bay -->
+<rect x="455" y="632" width="20" height="10" rx="2" fill="#2d2d2d" opacity=".7"/>
+<circle cx="458" cy="645" r="4" fill="none" stroke="#2d2d2d" stroke-width="1.5"/>
+<circle cx="472" cy="645" r="4" fill="none" stroke="#2d2d2d" stroke-width="1.5"/>
+<rect x="495" y="632" width="20" height="10" rx="2" fill="#2d2d2d" opacity=".7"/>
+<circle cx="498" cy="645" r="4" fill="none" stroke="#2d2d2d" stroke-width="1.5"/>
+<circle cx="512" cy="645" r="4" fill="none" stroke="#2d2d2d" stroke-width="1.5"/>
+
+<!-- ═══════════════════════════════════════════
+     AP1 — TOP LEFT — Employee + Motorcycle
+═══════════════════════════════════════════ -->
+<rect x="40" y="240" width="370" height="340" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/>
+<text x="225" y="260" text-anchor="middle" font-size="11" font-weight="500" fill="#3C3489">AP1 — Employee ANPR + Motorcycle</text>
+
+<!-- Entry lane label -->
+<text x="120" y="280" text-anchor="middle" font-size="9.5" font-weight="500" fill="#534AB7">Entry lane</text>
+<!-- Exit lane label -->
+<text x="300" y="280" text-anchor="middle" font-size="9.5" font-weight="500" fill="#534AB7">Exit lane</text>
+
+<!-- ENTRY: Car (top-down, approaching from left) -->
+<rect x="52" y="290" width="44" height="26" rx="5" fill="#3498db"/>
+<rect x="56" y="293" width="36" height="14" rx="3" fill="#aad4f5" opacity=".85"/>
+<rect x="59" y="286" width="26" height="10" rx="3" fill="#2980b9"/>
+<rect x="54" y="313" width="42" height="4" rx="2" fill="#2471a3"/>
+<rect x="55" y="308" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="79" y="308" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="62" y="314" width="18" height="4" rx="1" fill="#fff"/>
+<text x="71" y="317" text-anchor="middle" font-size="3.5" fill="#111">ABC 123</text>
+<ellipse cx="58" cy="316" rx="4" ry="3" fill="#1a1a1a"/>
+<ellipse cx="84" cy="316" rx="4" ry="3" fill="#1a1a1a"/>
+
+<!-- Entry ANPR unit -->
+<rect x="108" y="288" width="18" height="30" rx="3" fill="#222"/>
+<rect x="109" y="290" width="16" height="22" rx="2" fill="#0a0a0a"/>
+<text x="117" y="297" text-anchor="middle" font-size="4" fill="#FFA500">ELID</text>
+<text x="117" y="303" text-anchor="middle" font-size="3.5" fill="#FFA500">WLCM</text>
+<text x="117" y="309" text-anchor="middle" font-size="3.5" fill="#fff">✋</text>
+<rect x="112" y="284" width="10" height="6" rx="2" fill="#333"/>
+<circle cx="120" cy="287" r="2.5" fill="#1a1a1a"/>
+<rect x="116" y="319" width="4" height="10" rx="1" fill="#2d2d2d"/>
+
+<!-- Entry barrier (down) -->
+<rect x="136" y="305" width="10" height="7" rx="2" fill="#555"/>
+<rect x="140" y="298" width="4" height="8" rx="1" fill="#c0392b"/>
+<rect x="140" y="295" width="44" height="4" rx="1" fill="#c0392b"/>
+<rect x="145" y="295" width="5" height="3" rx="1" fill="#e74c3c"/>
+<rect x="157" y="295" width="5" height="3" rx="1" fill="#e74c3c"/>
+<rect x="169" y="295" width="5" height="3" rx="1" fill="#e74c3c"/>
+
+<!-- IP camera on pole (motorcycle) -->
+<rect x="97" y="288" width="3" height="30" rx="1" fill="#2d2d2d"/>
+<rect x="90" y="288" width="14" height="8" rx="2" fill="#333"/>
+<circle cx="100" cy="292" r="2" fill="#1a1a1a"/>
+<text x="73" y="285" text-anchor="middle" font-size="7.5" fill="#3C3489">IP cam</text>
+<text x="73" y="293" text-anchor="middle" font-size="7" fill="#534AB7">(moto rear)</text>
+
+<!-- Motorcycle (top-down) -->
+<rect x="58" y="340" width="24" height="12" rx="3" fill="#2d2d2d"/>
+<circle cx="62" cy="355" r="5" fill="none" stroke="#2d2d2d" stroke-width="2"/>
+<circle cx="78" cy="355" r="5" fill="none" stroke="#2d2d2d" stroke-width="2"/>
+<text x="70" y="372" text-anchor="middle" font-size="8" fill="#3C3489">Motorcycle</text>
+
+<!-- Extra processor label -->
+<rect x="50" y="382" width="155" height="16" rx="4" fill="#CECBF6" stroke="#7F77DD" stroke-width="0.5"/>
+<text x="127" y="393" text-anchor="middle" font-size="8.5" fill="#3C3489">Extra processor (moto cam)</text>
+
+<!-- EXIT LANE AP1 -->
+<!-- Exit car -->
+<rect x="240" y="290" width="44" height="26" rx="5" fill="#9b59b6"/>
+<rect x="244" y="293" width="36" height="14" rx="3" fill="#d2a8e8" opacity=".85"/>
+<rect x="247" y="286" width="26" height="10" rx="3" fill="#8e44ad"/>
+<rect x="242" y="313" width="42" height="4" rx="2" fill="#7d3c98"/>
+<rect x="243" y="308" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="267" y="308" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="250" y="314" width="18" height="4" rx="1" fill="#fff"/>
+<text x="259" y="317" text-anchor="middle" font-size="3.5" fill="#111">XYZ 789</text>
+<ellipse cx="246" cy="316" rx="4" ry="3" fill="#1a1a1a"/>
+<ellipse cx="272" cy="316" rx="4" ry="3" fill="#1a1a1a"/>
+
+<!-- Exit ANPR -->
+<rect x="294" y="288" width="18" height="30" rx="3" fill="#222"/>
+<rect x="295" y="290" width="16" height="22" rx="2" fill="#0a0a0a"/>
+<text x="303" y="297" text-anchor="middle" font-size="4" fill="#FFA500">ELID</text>
+<text x="303" y="303" text-anchor="middle" font-size="3.5" fill="#FFA500">BYE</text>
+<rect x="298" y="284" width="10" height="6" rx="2" fill="#333"/>
+<circle cx="306" cy="287" r="2.5" fill="#1a1a1a"/>
+<rect x="302" y="319" width="4" height="10" rx="1" fill="#2d2d2d"/>
+
+<!-- Exit barrier -->
+<rect x="322" y="305" width="10" height="7" rx="2" fill="#555"/>
+<rect x="326" y="298" width="4" height="8" rx="1" fill="#c0392b"/>
+<rect x="326" y="295" width="40" height="4" rx="1" fill="#c0392b"/>
+
+<!-- Exit motorcycle -->
+<rect x="245" y="340" width="24" height="12" rx="3" fill="#2d2d2d"/>
+<circle cx="249" cy="355" r="5" fill="none" stroke="#2d2d2d" stroke-width="2"/>
+<circle cx="265" cy="355" r="5" fill="none" stroke="#2d2d2d" stroke-width="2"/>
+
+<!-- LAN tag AP1 -->
+<rect x="50" y="402" width="52" height="14" rx="3" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<text x="76" y="412" text-anchor="middle" font-size="8" fill="#0C447C" font-weight="500">LAN</text>
+<text x="135" y="412" font-size="8" fill="#3C3489">→ Router A</text>
+
+<!-- ═══════════════════════════════════════════
+     AP2 — TOP RIGHT — Parking Payment
+═══════════════════════════════════════════ -->
+<rect x="990" y="240" width="370" height="340" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/>
+<text x="1175" y="260" text-anchor="middle" font-size="11" font-weight="500" fill="#712B13">AP2 — Parking payment</text>
+
+<text x="1070" y="280" text-anchor="middle" font-size="9.5" font-weight="500" fill="#993C1D">Entry lane</text>
+<text x="1270" y="280" text-anchor="middle" font-size="9.5" font-weight="500" fill="#993C1D">Exit lane</text>
+
+<!-- Entry car AP2 -->
+<rect x="1000" y="290" width="44" height="26" rx="5" fill="#27ae60"/>
+<rect x="1004" y="293" width="36" height="14" rx="3" fill="#a9dfbf" opacity=".85"/>
+<rect x="1007" y="286" width="26" height="10" rx="3" fill="#1e8449"/>
+<rect x="1002" y="313" width="42" height="4" rx="2" fill="#1a7a3e"/>
+<rect x="1003" y="308" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="1027" y="308" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="1010" y="314" width="18" height="4" rx="1" fill="#fff"/>
+<text x="1019" y="317" text-anchor="middle" font-size="3.5" fill="#111">DEF 456</text>
+<ellipse cx="1006" cy="316" rx="4" ry="3" fill="#1a1a1a"/>
+<ellipse cx="1032" cy="316" rx="4" ry="3" fill="#1a1a1a"/>
+
+<!-- Entry ANPR AP2 -->
+<rect x="1054" y="288" width="18" height="30" rx="3" fill="#222"/>
+<rect x="1055" y="290" width="16" height="22" rx="2" fill="#0a0a0a"/>
+<text x="1063" y="297" text-anchor="middle" font-size="4" fill="#FFA500">ELID</text>
+<text x="1063" y="303" text-anchor="middle" font-size="3.5" fill="#FFA500">PARK</text>
+<rect x="1058" y="284" width="10" height="6" rx="2" fill="#333"/>
+<circle cx="1066" cy="287" r="2.5" fill="#1a1a1a"/>
+<rect x="1062" y="319" width="4" height="10" rx="1" fill="#2d2d2d"/>
+
+<!-- Entry barrier AP2 -->
+<rect x="1082" y="305" width="10" height="7" rx="2" fill="#555"/>
+<rect x="1086" y="298" width="4" height="8" rx="1" fill="#c0392b"/>
+<rect x="1086" y="295" width="40" height="4" rx="1" fill="#c0392b"/>
+
+<!-- EXIT lane AP2 — car exiting, user paying -->
+<!-- exit car -->
+<rect x="1180" y="290" width="44" height="26" rx="5" fill="#e67e22"/>
+<rect x="1184" y="293" width="36" height="14" rx="3" fill="#fad7a0" opacity=".85"/>
+<rect x="1187" y="286" width="26" height="10" rx="3" fill="#ca6f1e"/>
+<rect x="1182" y="313" width="42" height="4" rx="2" fill="#b9770e"/>
+<rect x="1183" y="308" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="1207" y="308" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="1190" y="314" width="18" height="4" rx="1" fill="#fff"/>
+<text x="1199" y="317" text-anchor="middle" font-size="3.5" fill="#111">GHI 012</text>
+<ellipse cx="1186" cy="316" rx="4" ry="3" fill="#1a1a1a"/>
+<ellipse cx="1212" cy="316" rx="4" ry="3" fill="#1a1a1a"/>
+
+<!-- Exit ANPR AP2 -->
+<rect x="1240" y="288" width="18" height="30" rx="3" fill="#222"/>
+<rect x="1241" y="290" width="16" height="22" rx="2" fill="#0a0a0a"/>
+<text x="1249" y="297" text-anchor="middle" font-size="4" fill="#FFA500">ELID</text>
+<text x="1249" y="303" text-anchor="middle" font-size="3.5" fill="#2ecc71">PAY</text>
+<rect x="1244" y="284" width="10" height="6" rx="2" fill="#333"/>
+<circle cx="1252" cy="287" r="2.5" fill="#1a1a1a"/>
+<rect x="1248" y="319" width="4" height="10" rx="1" fill="#2d2d2d"/>
+
+<!-- Payment terminal -->
+<rect x="1164" y="338" width="32" height="44" rx="4" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.7"/>
+<rect x="1167" y="341" width="26" height="20" rx="2" fill="#1a1a2e"/>
+<text x="1180" y="354" text-anchor="middle" font-size="5.5" fill="#2ecc71">$PAY</text>
+<rect x="1167" y="363" width="26" height="8" rx="1" fill="#888780"/>
+<rect x="1168" y="364" width="4" height="6" rx="1" fill="#444"/>
+<rect x="1173" y="364" width="4" height="6" rx="1" fill="#444"/>
+<rect x="1178" y="364" width="4" height="6" rx="1" fill="#27ae60"/>
+<rect x="1183" y="364" width="4" height="6" rx="1" fill="#444"/>
+<rect x="1188" y="364" width="4" height="6" rx="1" fill="#444"/>
+<text x="1180" y="393" text-anchor="middle" font-size="8" fill="#712B13">Payment</text>
+<text x="1180" y="402" text-anchor="middle" font-size="8" fill="#712B13">terminal</text>
+<!-- LAN link: terminal to ANPR -->
+<line x1="1196" y1="360" x2="1240" y2="305" stroke="#378ADD" stroke-width="0.8" stroke-dasharray="3 2"/>
+
+<!-- Exit barrier AP2 (raised - payment done) -->
+<rect x="1268" y="305" width="10" height="7" rx="2" fill="#555"/>
+<rect x="1272" y="262" width="4" height="44" rx="1" fill="#c0392b"/>
+<text x="1285" y="278" font-size="8" fill="#27ae60">↑ open</text>
+
+<!-- LAN tag AP2 -->
+<rect x="1000" y="402" width="52" height="14" rx="3" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<text x="1026" y="412" text-anchor="middle" font-size="8" fill="#0C447C" font-weight="500">LAN</text>
+<text x="1060" y="412" font-size="8" fill="#712B13">→ Router A</text>
+
+<!-- ═══════════════════════════════════════════
+     AP3 — BOTTOM LEFT — Visitor management
+═══════════════════════════════════════════ -->
+<rect x="40" y="620" width="370" height="390" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/>
+<text x="225" y="640" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">AP3 — Visitor management (CloVis)</text>
+
+<text x="120" y="660" text-anchor="middle" font-size="9.5" font-weight="500" fill="#0F6E56">Entry lane</text>
+<text x="300" y="660" text-anchor="middle" font-size="9.5" font-weight="500" fill="#0F6E56">Exit lane</text>
+
+<!-- Visitor car entry AP3 -->
+<rect x="52" y="668" width="44" height="26" rx="5" fill="#1abc9c"/>
+<rect x="56" y="671" width="36" height="14" rx="3" fill="#a2d9ce" opacity=".85"/>
+<rect x="59" y="664" width="26" height="10" rx="3" fill="#148f77"/>
+<rect x="54" y="691" width="42" height="4" rx="2" fill="#117a65"/>
+<rect x="55" y="686" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="79" y="686" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="62" y="692" width="18" height="4" rx="1" fill="#fff"/>
+<text x="71" y="695" text-anchor="middle" font-size="3.5" fill="#111">JKL 345</text>
+<ellipse cx="58" cy="694" rx="4" ry="3" fill="#1a1a1a"/>
+<ellipse cx="84" cy="694" rx="4" ry="3" fill="#1a1a1a"/>
+<text x="74" y="710" text-anchor="middle" font-size="8" fill="#085041">Visitor</text>
+
+<!-- Entry ANPR AP3 -->
+<rect x="108" y="666" width="18" height="30" rx="3" fill="#222"/>
+<rect x="109" y="668" width="16" height="22" rx="2" fill="#0a0a0a"/>
+<text x="117" y="675" text-anchor="middle" font-size="4" fill="#FFA500">ELID</text>
+<text x="117" y="681" text-anchor="middle" font-size="3.5" fill="#FFA500">VISIT</text>
+<rect x="112" y="662" width="10" height="6" rx="2" fill="#333"/>
+<circle cx="120" cy="665" r="2.5" fill="#1a1a1a"/>
+<rect x="116" y="697" width="4" height="10" rx="1" fill="#2d2d2d"/>
+
+<!-- Entry barrier AP3 -->
+<rect x="136" y="683" width="10" height="7" rx="2" fill="#555"/>
+<rect x="140" y="676" width="4" height="8" rx="1" fill="#c0392b"/>
+<rect x="140" y="673" width="44" height="4" rx="1" fill="#c0392b"/>
+
+<!-- Guard workstation -->
+<rect x="52" y="730" width="155" height="90" rx="6" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.7"/>
+<text x="129" y="747" text-anchor="middle" font-size="9.5" font-weight="500" fill="#085041">Guard workstation</text>
+<!-- monitor -->
+<rect x="68" y="754" width="50" height="34" rx="3" fill="#1a1a2e"/>
+<rect x="70" y="756" width="46" height="28" rx="2" fill="#0a0f1a"/>
+<!-- visitor info popup on screen -->
+<rect x="72" y="758" width="42" height="24" rx="1" fill="#1a3a5c"/>
+<text x="93" y="765" text-anchor="middle" font-size="4" fill="#9FE1CB">VISITOR INFO</text>
+<text x="93" y="771" text-anchor="middle" font-size="3.5" fill="#fff">John Tan</text>
+<text x="93" y="777" text-anchor="middle" font-size="3.5" fill="#fff">JKL 345</text>
+<text x="93" y="783" text-anchor="middle" font-size="3.5" fill="#2ecc71">Visiting: Lee Wei</text>
+<rect x="86" y="788" width="8" height="4" rx="1" fill="#888780"/>
+<rect x="68" y="790" width="50" height="3" rx="1" fill="#888780" opacity=".5"/>
+<!-- guard figure -->
+<circle cx="155" cy="764" r="8" fill="#FAC775" stroke="#BA7517" stroke-width="0.5"/>
+<text x="155" y="767" text-anchor="middle" font-size="8" fill="#412402">👮</text>
+<rect x="148" y="773" width="14" height="20" rx="3" fill="#185FA5"/>
+<rect x="148" y="789" width="5" height="14" rx="2" fill="#185FA5"/>
+<rect x="157" y="789" width="5" height="14" rx="2" fill="#185FA5"/>
+<text x="155" y="810" text-anchor="middle" font-size="8" fill="#085041">Guard</text>
+<!-- manual trigger arrow guard to barrier -->
+<path d="M136 770 L136 690" stroke="#085041" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)" fill="none"/>
+<text x="145" y="735" font-size="8" fill="#085041">Manual</text>
+<text x="145" y="743" font-size="8" fill="#085041">trigger</text>
+
+<!-- exit lane AP3 -->
+<rect x="240" y="668" width="44" height="26" rx="5" fill="#1abc9c" opacity=".7"/>
+<rect x="244" y="671" width="36" height="14" rx="3" fill="#a2d9ce" opacity=".85"/>
+<rect x="247" y="664" width="26" height="10" rx="3" fill="#148f77"/>
+<rect x="242" y="691" width="42" height="4" rx="2" fill="#117a65"/>
+<ellipse cx="246" cy="694" rx="4" ry="3" fill="#1a1a1a"/>
+<ellipse cx="272" cy="694" rx="4" ry="3" fill="#1a1a1a"/>
+
+<!-- exit ANPR AP3 -->
+<rect x="294" y="666" width="18" height="30" rx="3" fill="#222"/>
+<rect x="295" y="668" width="16" height="22" rx="2" fill="#0a0a0a"/>
+<text x="303" y="675" text-anchor="middle" font-size="4" fill="#FFA500">ELID</text>
+<text x="303" y="681" text-anchor="middle" font-size="3.5" fill="#fff">EXIT</text>
+<rect x="298" y="662" width="10" height="6" rx="2" fill="#333"/>
+<circle cx="306" cy="665" r="2.5" fill="#1a1a1a"/>
+<rect x="302" y="697" width="4" height="10" rx="1" fill="#2d2d2d"/>
+
+<!-- exit barrier AP3 -->
+<rect x="322" y="683" width="10" height="7" rx="2" fill="#555"/>
+<rect x="326" y="676" width="4" height="8" rx="1" fill="#c0392b"/>
+<rect x="326" y="673" width="40" height="4" rx="1" fill="#c0392b"/>
+
+<!-- LAN tag AP3 -->
+<rect x="52" y="830" width="52" height="14" rx="3" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+<text x="78" y="840" text-anchor="middle" font-size="8" fill="#0C447C" font-weight="500">LAN</text>
+<text x="112" y="840" font-size="8" fill="#085041">→ Router B</text>
+<text x="225" y="862" text-anchor="middle" font-size="8.5" fill="#085041">Guard WS on same LAN · manual barrier trigger</text>
+
+<!-- ═══════════════════════════════════════════
+     AP4 — BOTTOM RIGHT — Clover + WiFi + Wiegand
+═══════════════════════════════════════════ -->
+<rect x="990" y="620" width="370" height="390" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="1.2"/>
+<text x="1175" y="640" text-anchor="middle" font-size="11" font-weight="500" fill="#412402">AP4 — Clover cloud · WiFi · Wiegand</text>
+
+<text x="1070" y="660" text-anchor="middle" font-size="9.5" font-weight="500" fill="#854F0B">Entry lane</text>
+<text x="1280" y="660" text-anchor="middle" font-size="9.5" font-weight="500" fill="#854F0B">Exit lane</text>
+
+<!-- Entry car AP4 -->
+<rect x="1000" y="668" width="44" height="26" rx="5" fill="#f39c12"/>
+<rect x="1004" y="671" width="36" height="14" rx="3" fill="#fdebd0" opacity=".85"/>
+<rect x="1007" y="664" width="26" height="10" rx="3" fill="#d68910"/>
+<rect x="1002" y="691" width="42" height="4" rx="2" fill="#b9770e"/>
+<rect x="1003" y="686" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="1027" y="686" width="8" height="4" rx="1" fill="#f9e79f"/>
+<rect x="1010" y="692" width="18" height="4" rx="1" fill="#fff"/>
+<text x="1019" y="695" text-anchor="middle" font-size="3.5" fill="#111">MNO 678</text>
+<ellipse cx="1006" cy="694" rx="4" ry="3" fill="#1a1a1a"/>
+<ellipse cx="1032" cy="694" rx="4" ry="3" fill="#1a1a1a"/>
+
+<!-- Entry ANPR AP4 -->
+<rect x="1054" y="666" width="18" height="30" rx="3" fill="#222"/>
+<rect x="1055" y="668" width="16" height="22" rx="2" fill="#0a0a0a"/>
+<text x="1063" y="675" text-anchor="middle" font-size="4" fill="#FFA500">ELID</text>
+<text x="1063" y="681" text-anchor="middle" font-size="3.5" fill="#FFA500">CLVR</text>
+<rect x="1058" y="662" width="10" height="6" rx="2" fill="#333"/>
+<circle cx="1066" cy="665" r="2.5" fill="#1a1a1a"/>
+<rect x="1062" y="697" width="4" height="10" rx="1" fill="#2d2d2d"/>
+<!-- WiFi symbol above ANPR -->
+<text x="1063" y="659" text-anchor="middle" font-size="9" fill="#EF9F27">📶</text>
+
+<!-- Wiegand line: ANPR → access controller -->
+<line x1="1072" y1="681" x2="1108" y2="710" stroke="#A32D2D" stroke-width="1.5" marker-end="url(#arr-r)" fill="none"/>
+<text x="1082" y="702" font-size="7.5" fill="#A32D2D">Wiegand</text>
+
+<!-- Access controller (inside barrier body) -->
+<rect x="1108" y="710" width="60" height="40" rx="4" fill="#F7C1C1" stroke="#A32D2D" stroke-width="0.7"/>
+<text x="1138" y="724" text-anchor="middle" font-size="8" fill="#791F1F" font-weight="500">Access</text>
+<text x="1138" y="733" text-anchor="middle" font-size="8" fill="#791F1F" font-weight="500">controller</text>
+<rect x="1118" y="736" width="40" height="8" rx="2" fill="#E24B4A" opacity=".5"/>
+<text x="1138" y="743" text-anchor="middle" font-size="7" fill="#501313">relay inside</text>
+
+<!-- barrier gate entry AP4 (controlled by controller) -->
+<rect x="1082" y="683" width="10" height="7" rx="2" fill="#555"/>
+<rect x="1086" y="648" width="4" height="36" rx="1" fill="#c0392b"/>
+<text x="1097" y="658" font-size="7" fill="#27ae60">↑</text>
+
+<!-- controller → barrier arrow -->
+<line x1="1108" y1="722" x2="1094" y2="695" stroke="#A32D2D" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arr-r)" fill="none"/>
+
+<!-- Exit lane AP4 -->
+<rect x="1220" y="668" width="44" height="26" rx="5" fill="#f39c12" opacity=".8"/>
+<rect x="1224" y="671" width="36" height="14" rx="3" fill="#fdebd0" opacity=".85"/>
+<rect x="1227" y="664" width="26" height="10" rx="3" fill="#d68910"/>
+<rect x="1222" y="691" width="42" height="4" rx="2" fill="#b9770e"/>
+<ellipse cx="1226" cy="694" rx="4" ry="3" fill="#1a1a1a"/>
+<ellipse cx="1252" cy="694" rx="4" ry="3" fill="#1a1a1a"/>
+
+<!-- Exit ANPR AP4 -->
+<rect x="1274" y="666" width="18" height="30" rx="3" fill="#222"/>
+<rect x="1275" y="668" width="16" height="22" rx="2" fill="#0a0a0a"/>
+<text x="1283" y="675" text-anchor="middle" font-size="4" fill="#FFA500">ELID</text>
+<text x="1283" y="681" text-anchor="middle" font-size="3.5" fill="#FFA500">EXIT</text>
+<rect x="1278" y="662" width="10" height="6" rx="2" fill="#333"/>
+<circle cx="1286" cy="665" r="2.5" fill="#1a1a1a"/>
+<rect x="1282" y="697" width="4" height="10" rx="1" fill="#2d2d2d"/>
+<text x="1283" y="659" text-anchor="middle" font-size="9" fill="#EF9F27">📶</text>
+
+<!-- Wiegand exit -->
+<line x1="1268" y1="681" x2="1236" y2="710" stroke="#A32D2D" stroke-width="1.5" marker-end="url(#arr-r)" fill="none"/>
+<text x="1265" y="702" font-size="7.5" fill="#A32D2D">Wiegand</text>
+
+<!-- Exit access controller -->
+<rect x="1198" y="710" width="60" height="40" rx="4" fill="#F7C1C1" stroke="#A32D2D" stroke-width="0.7"/>
+<text x="1228" y="724" text-anchor="middle" font-size="8" fill="#791F1F" font-weight="500">Access</text>
+<text x="1228" y="733" text-anchor="middle" font-size="8" fill="#791F1F" font-weight="500">controller</text>
+<rect x="1208" y="736" width="40" height="8" rx="2" fill="#E24B4A" opacity=".5"/>
+<text x="1228" y="743" text-anchor="middle" font-size="7" fill="#501313">relay inside</text>
+
+<!-- exit barrier AP4 -->
+<rect x="1302" y="683" width="10" height="7" rx="2" fill="#555"/>
+<rect x="1306" y="676" width="4" height="8" rx="1" fill="#c0392b"/>
+<rect x="1306" y="673" width="34" height="4" rx="1" fill="#c0392b"/>
+<line x1="1228" y1="710" x2="1310" y2="690" stroke="#A32D2D" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arr-r)" fill="none"/>
+
+<!-- WiFi tags AP4 -->
+<rect x="1000" y="760" width="60" height="14" rx="3" fill="#FAC775" stroke="#BA7517" stroke-width="0.5"/>
+<text x="1030" y="770" text-anchor="middle" font-size="8" fill="#412402" font-weight="500">WiFi only</text>
+<text x="1000" y="788" font-size="8" fill="#854F0B">No LAN required</text>
+<text x="1000" y="800" font-size="8" fill="#854F0B">Managed by Clover cloud</text>
+<text x="1000" y="812" font-size="8" fill="#854F0B">ANPR → Wiegand → controller → barrier</text>
+
+<!-- ═══════════════════════════════════════════
+     CONNECTOR LINES — Management to APs
+═══════════════════════════════════════════ -->
+
+<!-- DMS → Router A (LAN) -->
+<path d="M700 128 L700 148" stroke="#3B6D11" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)" fill="none"/>
+
+<!-- Router A → AP1 -->
+<path d="M440 171 L225 240" stroke="#3B6D11" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)" fill="none"/>
+<!-- Router A → AP2 -->
+<path d="M520 171 L1175 240" stroke="#3B6D11" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)" fill="none"/>
+
+<!-- CloVis → Router B -->
+<path d="M150 128 L150 200 L700 200 L700 148" stroke="#0F6E56" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)" fill="none"/>
+
+<!-- Router B → AP3 -->
+<path d="M650 194 L225 620" stroke="#0F6E56" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)" fill="none"/>
+
+<!-- Clover → WiFi router -->
+<path d="M1250 128 L1250 140 L915 140 L915 148" stroke="#854F0B" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)" fill="none"/>
+
+<!-- WiFi router → AP4 -->
+<path d="M930 194 L1175 620" stroke="#854F0B" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)" fill="none"/>
+
+<!-- ═══════════════════════════════════════════
+     LEGEND
+═══════════════════════════════════════════ -->
+<rect x="40" y="1020" width="1320" height="24" rx="6" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+<text x="55" y="1035" font-size="9.5" font-weight="500" fill="#444441">Legend:</text>
+<line x1="110" y1="1032" x2="140" y2="1032" stroke="#378ADD" stroke-width="1.5"/>
+<text x="145" y="1035" font-size="9" fill="#444441">LAN</text>
+<line x1="190" y1="1032" x2="220" y2="1032" stroke="#EF9F27" stroke-width="1.5" stroke-dasharray="4 2"/>
+<text x="225" y="1035" font-size="9" fill="#444441">WiFi</text>
+<line x1="265" y1="1032" x2="295" y2="1032" stroke="#A32D2D" stroke-width="1.5"/>
+<text x="300" y="1035" font-size="9" fill="#444441">Wiegand signal</text>
+<line x1="400" y1="1032" x2="430" y2="1032" stroke="#3B6D11" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="435" y="1035" font-size="9" fill="#444441">On-premise management (DMS)</text>
+<line x1="630" y1="1032" x2="660" y2="1032" stroke="#0F6E56" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="665" y="1035" font-size="9" fill="#444441">CloVis cloud management</text>
+<line x1="840" y1="1032" x2="870" y2="1032" stroke="#854F0B" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="875" y="1035" font-size="9" fill="#444441">Clover cloud management</text>
+<rect x="1040" y="1026" width="10" height="10" rx="1" fill="#3498db" opacity=".8"/>
+<text x="1056" y="1035" font-size="9" fill="#444441">Car (occupied bay)</text>
+<rect x="1160" y="1026" width="10" height="10" rx="1" fill="#2d2d2d" opacity=".7"/>
+<text x="1176" y="1035" font-size="9" fill="#444441">Motorcycle</text>
+<rect x="1252" y="1026" width="10" height="10" rx="1" fill="#F7C1C1" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="1268" y="1035" font-size="9" fill="#444441">Access controller</text>
+
+</svg>
+</div>
+</body>
+</html>
